@@ -102,7 +102,7 @@ jobs:
         - uses: trstringer/manual-approval@v1
           with:
             secret: ${{ github.TOKEN }}
-            approvers: alz-mgmt-approvers
+            approvers: adamfelner
       
   apply:
     needs: approve
