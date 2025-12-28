@@ -89,9 +89,24 @@ jobs:
           -chdir="${{inputs.root_module_folder_relative_path}}" \
           show \
           tfplan
-
+          
+  approve:
+      needs: plan
+      name: Approve TF Plan
+      runs-on:
+        ubuntu-latest
+      environment: alz-mgmt-apply
+      permissions:
+        id-token: write
+        contents: read
+      steps:
+        - uses: trstringer/manual-approval@v1
+          with:
+            secret: ${{ github.TOKEN }}
+            approvers: alz-mgmt-approvers
+      
   apply:
-    needs: plan
+    needs: approve
     name: Apply with Terraform
     runs-on:
       self-hosted
