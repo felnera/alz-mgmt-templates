@@ -97,8 +97,7 @@ jobs:
         ubuntu-latest
       environment: alz-mgmt-apply
       permissions:
-        id-token: write
-        contents: read
+        issues: write
       steps:
         - uses: trstringer/manual-approval@v1
           with:
